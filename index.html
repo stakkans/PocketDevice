@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <meta name="theme-color" content="#101916">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>PocketDevice</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="icon-192.png">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="device">
+        <svg class="shell-pcb" viewBox="0 0 400 760" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <defs>
+                <pattern id="pcb-grid" width="12" height="12" patternUnits="userSpaceOnUse">
+                    <circle cx="2" cy="2" r=".7" fill="#a6bd9a" opacity=".28"/>
+                </pattern>
+                <linearGradient id="pcb-substrate" x1="0" y1="0" x2="1" y2="1">
+                    <stop stop-color="#304c40"/><stop offset=".48" stop-color="#193427"/><stop offset="1" stop-color="#12231c"/>
+                </linearGradient>
+                <linearGradient id="chip-shade"><stop stop-color="#34403d"/><stop offset="1" stop-color="#101716"/></linearGradient>
+                <g id="pcb-via"><circle r="2.6" fill="#809b6d" stroke="#c6a66d" stroke-width=".65"/><circle r="1" fill="#142822"/></g>
+                <g id="pcb-resistor"><rect width="16" height="7" rx="1" fill="#151e1a" stroke="#8a8b78" stroke-width=".6"/><rect width="3" height="7" fill="#b7b6a0"/><rect x="13" width="3" height="7" fill="#a4a99a"/><path d="M6 2h4" stroke="#75867d" stroke-width=".8"/></g>
+                <g id="pcb-capacitor"><rect width="12" height="8" rx="1" fill="#7c8e6c"/><rect width="2" height="8" fill="#b8ae87"/><rect x="10" width="2" height="8" fill="#b8ae87"/></g>
+            </defs>
+            <rect x="9" y="10" width="382" height="740" rx="23" fill="url(#pcb-substrate)" stroke="#769679" stroke-width="1.5"/>
+            <rect x="13" y="14" width="374" height="732" rx="20" fill="url(#pcb-grid)" opacity=".48"/>
+            <g stroke="#a2a76b" fill="none" stroke-width="1.1" opacity=".62" stroke-linejoin="round">
+                <path d="M20 28H103l20 20h132l19-19h103 M22 34h76l24 24h155l18-19h80 M23 42h64l28 27h174l29-27h56"/>
+                <path d="M18 94h9v74l-7 7v142l7 7v155l-7 7v69l42 42h42 M25 77v96l-7 7v135l9 9v169l10 10v52l40 40h38 M31 102v62l-6 6v138l7 7v174l13 13v48l35 35h35"/>
+                <path d="M380 75v100l-7 9v147l8 8v157l-9 9v77l-35 35h-42 M373 76v89l-7 7v165l8 8v143l-16 17v63l-30 30h-39 M366 92v71l-6 6v171l6 6v137l-16 16v61l-32 32h-33"/>
+                <path d="M42 539h53l49 48h42 M25 548h51l49 49h61 M31 621h67l33-33h55 M18 642h91l34-34h43 M27 659h82l50-50h27 M31 692h72l57-57h30"/>
+                <path d="M371 539h-55l-46 46h-43 M370 547h-44l-50 50h-49 M371 620h-82l-31-31h-31 M381 639h-76l-44-31h-32 M373 655h-89l-25-25h-29 M368 685h-76l-34-34h-28"/>
+                <path d="M89 725v-17l31-31h42l19-19v-25 M99 730v-17l27-27h44l21-21v-24 M269 723v-19l-21-21h-28l-18-18v-34 M279 731v-24l-28-29h-24l-15-15v-29 M50 712h23v-32l20-20 M326 715h-12v-39l-18-18"/>
+            </g>
+            <g fill="none" stroke="#4eac8e" stroke-width=".9" opacity=".65">
+                <path d="M13 527h34l14 14h77l30 30h62l36-36h78l34-34 M16 535h28l14 14h76l26 26h76l30-30h85l25-25"/>
+                <path d="M17 704h76l37-37h25l29-29H219l39 39h30l22 22h73 M20 715h71l45-45h23l22-23h35l34 34h40l30 29h54"/>
+                <path d="M61 35v22l18 18 M68 31v20l19 19 M327 30v23l-20 20 M335 32v24l-20 20"/>
+            </g>
+            <g fill="#879c79" stroke="#b6bca0" stroke-width=".6">
+                <rect x="16" y="55" width="13" height="28" rx="3"/><rect x="371" y="55" width="13" height="28" rx="3"/>
+                <rect x="15" y="482" width="11" height="31" rx="2"/><rect x="374" y="475" width="10" height="31" rx="2"/>
+                <rect x="43" y="16" width="29" height="9" rx="1"/><rect x="328" y="16" width="29" height="9" rx="1"/>
+            </g>
+            <!-- Контакти й деталі в нижній частині плати -->
+            <g transform="translate(159 575)">
+                <rect x="-7" y="-7" width="78" height="83" rx="3" fill="#12251d" stroke="#6c9877" stroke-width=".8"/>
+                <g fill="#a7af99"><rect x="0" y="-5" width="3.5" height="9"/><rect x="0" y="65" width="3.5" height="9"/><rect x="-5" y="0" width="9" height="3.5"/><rect x="59" y="0" width="9" height="3.5"/><rect x="7" y="-5" width="3.5" height="9"/><rect x="7" y="65" width="3.5" height="9"/><rect x="-5" y="7" width="9" height="3.5"/><rect x="59" y="7" width="9" height="3.5"/><rect x="14" y="-5" width="3.5" height="9"/><rect x="14" y="65" width="3.5" height="9"/><rect x="-5" y="14" width="9" height="3.5"/><rect x="59" y="14" width="9" height="3.5"/><rect x="21" y="-5" width="3.5" height="9"/><rect x="21" y="65" width="3.5" height="9"/><rect x="-5" y="21" width="9" height="3.5"/><rect x="59" y="21" width="9" height="3.5"/><rect x="28" y="-5" width="3.5" height="9"/><rect x="28" y="65" width="3.5" height="9"/><rect x="-5" y="28" width="9" height="3.5"/><rect x="59" y="28" width="9" height="3.5"/><rect x="35" y="-5" width="3.5" height="9"/><rect x="35" y="65" width="3.5" height="9"/><rect x="-5" y="35" width="9" height="3.5"/><rect x="59" y="35" width="9" height="3.5"/><rect x="42" y="-5" width="3.5" height="9"/><rect x="42" y="65" width="3.5" height="9"/><rect x="-5" y="42" width="9" height="3.5"/><rect x="59" y="42" width="9" height="3.5"/><rect x="49" y="-5" width="3.5" height="9"/><rect x="49" y="65" width="3.5" height="9"/><rect x="-5" y="49" width="9" height="3.5"/><rect x="59" y="49" width="9" height="3.5"/><rect x="56" y="-5" width="3.5" height="9"/><rect x="56" y="65" width="3.5" height="9"/><rect x="-5" y="56" width="9" height="3.5"/><rect x="59" y="56" width="9" height="3.5"/></g>
+                <rect x="4" y="4" width="55" height="61" rx="2" fill="url(#chip-shade)" stroke="#6a7972"/>
+                <circle cx="10" cy="10" r="2" fill="#9da7a0"/><path d="M15 24h33M15 29h21M15 39h29M15 44h17" stroke="#768880" stroke-width="1" opacity=".62"/>
+                <text x="31" y="54" text-anchor="middle" font-size="6.5" fill="#8d9e90" font-family="monospace">PD CORE</text>
+            </g>
+            <g transform="translate(286 678)">
+                <rect x="-4" y="-3" width="56" height="26" rx="2" fill="#152a20" stroke="#6c9877"/>
+                <rect width="48" height="20" rx="2" fill="#303838" stroke="#879b88"/>
+                <path d="M6 7h36M6 12h26" stroke="#839287" stroke-width=".8"/>
+            </g>
+            <g transform="translate(64 670)">
+                <rect width="26" height="36" rx="2" fill="#202a26" stroke="#84947b"/>
+                <path d="M4 1v-5m6 5v-5m6 5v-5m6 5v-5M4 36v5m6-5v5m6-5v5m6-5v5" stroke="#b0b19a" stroke-width="2"/>
+                <rect x="5" y="5" width="16" height="26" rx="1" fill="#3d4942"/>
+                <circle cx="9" cy="9" r="1.5" fill="#a3b4a2"/>
+            </g>
+            <g opacity=".9"><use href="#pcb-via" x="29" y="99"/><use href="#pcb-via" x="18" y="170"/><use href="#pcb-via" x="27" y="323"/><use href="#pcb-via" x="20" y="479"/><use href="#pcb-via" x="32" y="495"/><use href="#pcb-via" x="375" y="92"/><use href="#pcb-via" x="374" y="195"/><use href="#pcb-via" x="367" y="345"/><use href="#pcb-via" x="380" y="480"/><use href="#pcb-via" x="361" y="504"/><use href="#pcb-via" x="42" y="539"/><use href="#pcb-via" x="94" y="539"/><use href="#pcb-via" x="109" y="570"/><use href="#pcb-via" x="138" y="588"/><use href="#pcb-via" x="109" y="621"/><use href="#pcb-via" x="128" y="608"/><use href="#pcb-via" x="90" y="659"/><use href="#pcb-via" x="102" y="692"/><use href="#pcb-via" x="73" y="712"/><use href="#pcb-via" x="159" y="632"/><use href="#pcb-via" x="192" y="652"/><use href="#pcb-via" x="227" y="641"/><use href="#pcb-via" x="289" y="539"/><use href="#pcb-via" x="316" y="539"/><use href="#pcb-via" x="348" y="565"/><use href="#pcb-via" x="298" y="621"/><use href="#pcb-via" x="260" y="631"/><use href="#pcb-via" x="298" y="656"/><use href="#pcb-via" x="323" y="685"/><use href="#pcb-via" x="279" y="723"/><use href="#pcb-via" x="251" y="678"/><use href="#pcb-via" x="121" y="677"/><use href="#pcb-via" x="91" y="730"/><use href="#pcb-via" x="363" y="724"/><use href="#pcb-via" x="41" y="727"/><use href="#pcb-via" x="360" y="34"/><use href="#pcb-via" x="42" y="34"/></g>
+            <g><use href="#pcb-resistor" x="18" y="520"/><use href="#pcb-resistor" x="36" y="520"/><use href="#pcb-resistor" x="54" y="520"/><use href="#pcb-resistor" x="314" y="520"/><use href="#pcb-resistor" x="332" y="520"/><use href="#pcb-resistor" x="350" y="520"/><use href="#pcb-resistor" x="99" y="705"/><use href="#pcb-resistor" x="118" y="705"/><use href="#pcb-resistor" x="139" y="705"/><use href="#pcb-resistor" x="285" y="711"/><use href="#pcb-resistor" x="303" y="711"/><use href="#pcb-resistor" x="321" y="711"/><use href="#pcb-resistor" x="156" y="546"/><use href="#pcb-resistor" x="176" y="546"/><use href="#pcb-resistor" x="196" y="546"/><use href="#pcb-resistor" x="216" y="546"/><use href="#pcb-resistor" x="236" y="546"/><use href="#pcb-resistor" x="117" y="676"/><use href="#pcb-resistor" x="117" y="686"/><use href="#pcb-resistor" x="117" y="696"/><use href="#pcb-capacitor" x="20" y="580"/><use href="#pcb-capacitor" x="35" y="580"/><use href="#pcb-capacitor" x="50" y="580"/><use href="#pcb-capacitor" x="348" y="574"/><use href="#pcb-capacitor" x="363" y="574"/><use href="#pcb-capacitor" x="20" y="678"/><use href="#pcb-capacitor" x="36" y="678"/><use href="#pcb-capacitor" x="351" y="659"/><use href="#pcb-capacitor" x="365" y="659"/><use href="#pcb-capacitor" x="159" y="696"/><use href="#pcb-capacitor" x="175" y="696"/><use href="#pcb-capacitor" x="191" y="696"/><use href="#pcb-capacitor" x="207" y="696"/><use href="#pcb-capacitor" x="223" y="696"/></g>
+            <g fill="#a2b497" opacity=".7" font-family="monospace" font-size="7">
+                <text x="145" y="719">PD / MAIN BOARD</text>
+                <text x="145" y="730">REV. 01   •   16 BIT</text>
+                <text x="31" y="608">J1</text><text x="346" y="607">J2</text><text x="251" y="580">C12</text>
+            </g>
+            <g fill="#11221b" stroke="#9aab94" stroke-width="1.5">
+                <circle cx="23" cy="23" r="7.5"/><circle cx="377" cy="23" r="7.5"/>
+                <circle cx="23" cy="737" r="7.5"/><circle cx="377" cy="737" r="7.5"/>
+            </g>
+        </svg>
+        <div class="shell-glass" aria-hidden="true"></div>
+        <div class="shell-brand" aria-hidden="true">
+            <span class="shell-brand-name">Pocket<span>Device</span></span>
+            <span class="shell-power"><i></i>PWR</span>
+        </div>
+
+        <section class="display">
+
+            <div class="screen-content">
+                <div class="menu-header">Меню</div>
+
+<div class="menu-grid">
+
+    <button class="menu-item" data-page="map">
+        <svg viewBox="0 0 16 16">
+            <path d="M1 3L5 1L11 3L15 1V13L11 15L5 13L1 15Z
+                     M5 1V13M11 3V15"/>
+        </svg>
+        <span>Карта</span>
+    </button>
+
+    <button class="menu-item" data-page="profile">
+        <svg viewBox="0 0 16 16">
+            <path d="M2 2H8V8H2Z M1 10H9V14H1Z
+                     M10 4H14V9H10Z M11 11H15V14H11Z"/>
+        </svg>
+        <span>Персонажі</span>
+    </button>
+
+    <button class="menu-item" data-page="companion">
+        <svg viewBox="0 0 16 16">
+            <path d="M4 3H12V13H4Z
+                     M1 5H4V10H1Z
+                     M12 5H15V10H12Z"/>
+            <path d="M6 6V8M10 6V8M6 11H10"/>
+        </svg>
+        <span>Кореш</span>
+    </button>
+
+    <button class="menu-item" data-page="library">
+        <svg viewBox="0 0 16 16">
+            <path d="M1 2H6L8 4L10 2H15V13H10L8 15L6 13H1Z
+                     M8 4V15"/>
+        </svg>
+        <span>Чтиво</span>
+    </button>
+
+    <button class="menu-item" data-page="settings">
+        <svg viewBox="0 0 16 16">
+            <path d="M6 1H10V4H13V6H15V10H13V12H10V15H6V12H3V10H1V6H3V4H6Z
+                     M6 6H10V10H6Z"/>
+        </svg>
+        <span>Налаштування</span>
+    </button>
+
+    <button class="menu-item" data-page="notes">
+        <svg viewBox="0 0 16 16">
+            <path d="M3 1H13V15H3Z
+                     M5 5H11M5 8H11M5 11H9"/>
+        </svg>
+        <span>Записки</span>
+    </button>
+
+    <button class="menu-item" data-page="games">
+        <svg viewBox="0 0 16 16">
+            <path d="M3 4H13L15 12H11L9 10H7L5 12H1Z
+                     M3 7H7M5 5V9M11 6V8M13 8V10"/>
+        </svg>
+        <span>Ігри</span>
+    </button>
+
+    <button class="menu-item" data-page="timer">
+    <svg viewBox="0 0 16 16">
+        <path d="M6 1H10M8 1V4
+                 M5 4H11L14 7V12
+                 L11 15H5L2 12V7Z
+                 M8 6V10H11"/>
+    </svg>
+    <span>Таймер</span>
+</button>
+
+<button class="menu-item" data-page="calculator">
+    <svg viewBox="0 0 16 16">
+        <path d="M3 1H13V15H3Z
+                 M5 3H11V6H5Z
+                 M5 8H7M9 8H11
+                 M5 10H7M9 10H11
+                 M5 12H7M9 12H11"/>
+    </svg>
+    <span>Калькулятор</span>
+</button>
+
+</div>
+            </div>
+
+        </section>
+
+        <section class="controls" aria-label="Кнопки пристрою">
+            <div class="dpad-well">
+                <div class="dpad">
+                    <button id="up" aria-label="Вгору"><span>▲</span></button>
+                    <button id="left" aria-label="Ліворуч"><span>◀</span></button>
+                    <div class="dpad-center" aria-hidden="true"></div>
+                    <button id="right" aria-label="Праворуч"><span>▶</span></button>
+                    <button id="down" aria-label="Вниз"><span>▼</span></button>
+                </div>
+            </div>
+            <div class="control-divider" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="action-controls">
+                <div class="action-key action-back"><button id="back" aria-label="Назад"><span>●</span></button><small>НАЗАД</small></div>
+                <div class="action-key action-confirm"><button id="confirm" aria-label="Вибрати"><span>●</span></button><small>ОК</small></div>
+            </div>
+        </section>
+        <div class="shell-footer" aria-hidden="true">
+            <span class="shell-mark">PD – 01</span>
+            <div class="shell-speaker"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+
+    </main>
+
+    <script src="map-data.js"></script>
+    <script src="script.js"></script>
+    <script src="pwa.js"></script>
+
+</body>
+</html>

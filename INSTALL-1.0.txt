@@ -1,0 +1,49 @@
+PocketDevice 1.0 — збірка 51
+
+1. Зроби резервну копію своєї папки PocketDevice.
+2. Розпакуй цей архів прямо в існуючу папку PocketDevice, погодься на заміну файлів.
+   Всі попередні PNG із шимпанзе залишаються на місці. Не видаляй їх.
+3. На Windows можна, як і раніше, відкривати index.html.
+
+Для iPhone / Android:
+1. Потрібно розмістити ВСЮ папку на статичному сайті з HTTPS.
+   Наприклад, GitHub Pages має безкоштовний варіант для публічних репозиторіїв.
+   Увага: опубліковані файли будуть доступні іншим. Не завантажуй приватні файли.
+2. Відкрий адресу сайту в Safari на iPhone. У меню «Поділитися» вибери
+   «На початковий екран» / «Додати на початковий екран» та, якщо доступно,
+   «Відкрити як вебзастосунок».
+3. Відкрий PocketDevice з іконки, поки є інтернет. Зайди у «Налаштування».
+   Зачекай, поки буде написано «Офлайн: готово».
+4. Для перевірки ввімкни авіарежим та відкрий застосунок знову.
+
+Не потрібно платити за App Store, сервер чи реєстрацію.
+Усі функції виконуються на пристрої; однак iOS може видаляти кеш, якщо бракує місця,
+або після очищення даних сайту. Тоді потрібно знову відкрити сайт онлайн.
+Записки, імена, статистика та налаштування з локального файла на ПК НЕ переносяться
+автоматично на нову HTTPS-адресу або інший пристрій.
+
+Перевір список PNG у своїй існуючій папці (19 файлів):
+chimp.png
+chimp-blink.png
+chimp-grab.png
+chimp-pet.png
+chimp-beer-hold.png
+chimp-beer-drink.png
+chimp-smoke.png
+chimp-smoke-exhale.png
+chimp-walk-1.png
+chimp-walk-2.png
+chimp-sit.png
+chimp-sleep.png
+chimp-yawn.png
+chimp-scratch-butt.png
+chimp-scratch-groin.png
+chimp-laugh.png
+chimp-middle-finger.png
+chimp-cap.png
+chimp-pee.png
+
+Джерела:
+https://support.apple.com/guide/iphone/iph42ab2f3a7/ios
+https://docs.github.com/en/pages/getting-started-with-github-pages/quickstart
+https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers
