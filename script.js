@@ -15,9 +15,9 @@ screen.appendChild(page);
 // Персонажі: вибір та імена зберігаються локально.
 const companionCharacters = [
     { id: "chimp", species: "Шимпанзе", image: "chimp.png", available: true },
-    { id: "goat", species: "Козел", image: "goat.svg", available: true },
-    { id: "devil", species: "Чортиця", image: "devil.svg", available: true },
-    { id: "medusa", species: "Медуза Горгона", image: "medusa.svg", available: true }
+    { id: "goat", species: "Козел", image: "goat.png", available: true },
+    { id: "devil", species: "Чортиця", image: "devil.png", available: true },
+    { id: "medusa", species: "Медуза Горгона", image: "medusa.png", available: true }
 ];
 const companionStorageKey = "pocketdevice.characters.v1";
 
@@ -1938,7 +1938,7 @@ function deviceRefreshSettings(){
 }
 function openDeviceSettings(){
     page.innerHTML=`<div class="settings-panel">
-        <div class="menu-header settings-title">Налаштування <span>2.0</span></div>
+        <div class="menu-header settings-title">Налаштування <span>2.0.1</span></div>
         <div class="setting-row" data-setting="theme">
             <label for="setting-theme">Колір дисплея</label>
             <select id="setting-theme" class="setting-theme"></select>
@@ -1962,7 +1962,7 @@ function openDeviceSettings(){
         <div class="setting-row" data-setting="test"><button type="button" class="setting-test">Тест звуку</button></div>
         <div class="setting-row" data-setting="reset"><button type="button" class="setting-reset">Стандартні параметри</button></div>
         <div class="setting-message" role="status"></div>
-        <div class="setting-about">PocketDevice 2.0<br>Працює офлайн.<br><span class="pwa-status">Перевіряю офлайн-кеш…</span><br>▲ ▼ — вибір. ◀ ▶ — змінити. ● — дія.</div>
+        <div class="setting-about">PocketDevice 2.0.1<br>Працює офлайн.<br><span class="pwa-status">Перевіряю офлайн-кеш…</span><br>▲ ▼ — вибір. ◀ ▶ — змінити. ● — дія.</div>
     </div>`;
     const root=page.querySelector(".settings-panel");
     const select=root.querySelector(".setting-theme");
