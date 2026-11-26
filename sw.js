@@ -1,10 +1,10 @@
-// PocketDevice 1.0, build 51 — static offline app. Bump CACHE_VERSION for every release.
-const CACHE_VERSION = "1.0-build51";
+// PocketDevice 2.0, build 01 — static offline app. Bump CACHE_VERSION for every release.
+const CACHE_VERSION = "2.0-build01";
 const PREFIX = "pocketdevice-" + self.registration.scope + "-";
 const CACHE_NAME = PREFIX + CACHE_VERSION;
 const CORE = [
     "index.html","style.css","script.js","map-data.js","pwa.js","manifest.webmanifest",
-    "icon-192.png","icon-512.png","apple-touch-icon.png"
+    "icon-192.png","icon-512.png","apple-touch-icon.png","v2.css","v2.js","v2-library.js","goat.svg","devil.svg","medusa.svg","goat-book.svg","goat-coffee.svg","goat-glasses.svg","goat-meditate.svg","devil-fire.svg","devil-finger.svg","devil-tail.svg","devil-laugh.svg","medusa-snakes.svg","medusa-stone.svg","medusa-hiss.svg","medusa-mirror.svg"
 ];
 const SPRITES = [
     "chimp.png","chimp-blink.png","chimp-grab.png","chimp-pet.png","chimp-beer-hold.png",

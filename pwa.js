@@ -1,4 +1,4 @@
-// PocketDevice 1.0 — installability and offline status, no remote user accounts.
+// PocketDevice 2.0 — installability and offline status, no remote user accounts.
 (function(){
     let status="Перевіряю офлайн-кеш…",registration=null;
     function render(){
@@ -23,7 +23,7 @@
         const data=event.data;
         if(data?.type!=="PD_CACHE_STATUS")return;
         if(data.ready)setStatus("Офлайн: готово. Усі файли та анімації збережено.");
-        else setStatus("Офлайн: не всі файли збережені ("+(data.missing?.length||0)+"). Перевір PNG та відкрий із мережею.");
+        else setStatus("Офлайн: не всі файли збережені ("+(data.missing?.length||0)+"). Відкрий застосунок із мережею та перевір, чи всі файли оновлення завантажено.");
     });
     navigator.serviceWorker.addEventListener("controllerchange",()=>ask(true));
     window.addEventListener("online",()=>ask(true));

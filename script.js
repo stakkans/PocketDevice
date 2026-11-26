@@ -15,7 +15,9 @@ screen.appendChild(page);
 // Персонажі: вибір та імена зберігаються локально.
 const companionCharacters = [
     { id: "chimp", species: "Шимпанзе", image: "chimp.png", available: true },
-    { id: "goat", species: "Козел", image: null, available: false }
+    { id: "goat", species: "Козел", image: "goat.svg", available: true },
+    { id: "devil", species: "Чортиця", image: "devil.svg", available: true },
+    { id: "medusa", species: "Медуза Горгона", image: "medusa.svg", available: true }
 ];
 const companionStorageKey = "pocketdevice.characters.v1";
 
@@ -711,26 +713,6 @@ const builtInArticles = [
         "url": "https://npm.ombudsman.gov.ua/wp-content/uploads/2026/02/kodeks-ukrayiny-pro-administratyvni-pravoporushennya.pdf"
       }
     ]
-  },
-  {
-    "id": "dnr",
-    "category": "history",
-    "title": "Очерки истории Донецкой Народной Республики",
-    "text": "Монографія 2024 року, за редакцією Л. Г. Шепко, В. В. Разумного, А. В. Колесника. ISBN 978-5-00244-546-2.\n\nОгляд змісту: автори описують функціонування самопроголошеної «ДНР» у 2014–2022 роках. Теми включають її політичні інституції, відносини з РФ, культурну політику, освіту й історичну пам’ять. Книга представляє погляд авторів із підконтрольних Росії установ і використовує російську офіційну інтерпретацію подій.\n\nІсторичний контекст: у 2014 році збройні угруповання захопили органи влади на території Донецької та Луганської областей України. Самопроголошені утворення не були міжнародно визнаними державами. У 2022 році РФ оголосила про анексію частин України; Генеральна Асамблея ООН засудила її в резолюції ES-11/4.\n\nЦе стислий критичний огляд, не відтворення книги. Для дослідження порівнюй її з незалежними джерелами та офіційними документами.",
-    "sources": [
-      {
-        "label": "Бібліографічний запис",
-        "url": "https://elib.wkau.kz/ru/poisk-po-elektronnomw-katalogw/?e_kls=%D0%94%D0%9E%D0%9D&e_sort=alf_desc&e_viewdb=LANN"
-      },
-      {
-        "label": "ООН: доповідь про окупацію, 2024",
-        "url": "https://ukraine.un.org/sites/default/files/2024-04/2024-03-20%20OHCHR%20Report%20on%20Occupation%20and%20Aftermath%20%281%29_0.pdf"
-      },
-      {
-        "label": "ООН: резолюція ES-11/4",
-        "url": "https://digitallibrary.un.org/record/3990673/files/A_RES_ES-11_4-EN.pdf"
-      }
-    ]
   }
 ];
 
@@ -967,7 +949,8 @@ const mapCategories = {
     pharm: ["Аптеки", "А", "#8bdfae"],
     police: ["Поліція", "П", "#91c9fa"],
     fire: ["ДСНС", "Д", "#ffbd87"],
-    shelter: ["Укриття", "У", "#f1dd83"]
+    shelter: ["Укриття", "У", "#f1dd83"],
+    cafe: ["Кафе / їжа", "К", "#ffc08d"], bar: ["Бари", "Б", "#e5a9ef"], shop: ["Магазини", "М", "#a8deff"], leisure: ["Відпочинок", "В", "#b5f396"]
 };
 const mapState = {x: 2900, y: 4050, zoom: .85, category: "all", mode: "map", selected: -1, cursor: 0, query: ""};
 const mapNS = "http://www.w3.org/2000/svg";
@@ -1110,7 +1093,7 @@ function openMap() {
         <div class="map-tools"><button type="button" data-map="minus" aria-label="Віддалити">−</button><button type="button" data-map="reset">Все місто</button><button type="button" data-map="plus" aria-label="Наблизити">+</button></div>
         <div class="map-list-panel" hidden><input class="map-search" type="search" placeholder="Назва або вулиця" aria-label="Пошук місця"><div class="map-list"></div></div>
         <div class="map-detail" hidden></div>
-        <div class="map-help">Тягни карту, крути коліщатко. Стрілки корпусу — рух.</div>
+        <div class="map-help">Тягни карту одним пальцем, двома — наближай і віддаляй. Стрілки корпусу — рух.</div>
         <div class="map-credit">© OpenStreetMap contributors · ODbL · 26.11.2026<br>Укриття: списки міськради. Не всі адреси мають точку. Дані не в реальному часі.<br>101 — ДСНС · 102 — поліція · 103 — швидка<br><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">Ліцензія карти</a> · <a href="https://myrgorod.pl.ua/news/perelik-zahysnyh-sporud-i-ukryttiv-gromady" target="_blank" rel="noopener">Перелік укриттів</a></div>
     </div>`;
     const filters = page.querySelector(".map-filters");
@@ -1132,23 +1115,23 @@ function openMap() {
         touchPoints.set(e.pointerId,{x:e.clientX,y:e.clientY});
         svg.setPointerCapture(e.pointerId);
         if(touchPoints.size===2){
-            const [a,b]=[...touchPoints.values()];pinch={dist:Math.hypot(a.x-b.x,a.y-b.y),zoom:mapState.zoom};drag=null;return;
+            const [a,b]=[...touchPoints.values()];pinch={dist:Math.hypot(a.x-b.x,a.y-b.y),zoom:mapState.zoom,anchor:v2MapPoint(svg,(a.x+b.x)/2,(a.y+b.y)/2)};drag=null;return;
         }
         if(touchPoints.size===1) drag={id:e.pointerId,x:e.clientX,y:e.clientY,cx:mapState.x,cy:mapState.y,point:e.target.closest("[data-point]"),moved:false};
     });
     svg.addEventListener("pointermove",e=>{
         if(!touchPoints.has(e.pointerId)) return;
         touchPoints.set(e.pointerId,{x:e.clientX,y:e.clientY});
-        if(pinch&&touchPoints.size===2){const [a,b]=[...touchPoints.values()];mapState.zoom=Math.max(.75,Math.min(12,pinch.zoom*Math.hypot(a.x-b.x,a.y-b.y)/Math.max(1,pinch.dist)));renderMapView();return;}
+        if(pinch&&touchPoints.size===2){const [a,b]=[...touchPoints.values()];mapState.zoom=Math.max(.75,Math.min(12,pinch.zoom*Math.hypot(a.x-b.x,a.y-b.y)/Math.max(1,pinch.dist)));const now=v2MapPoint(svg,(a.x+b.x)/2,(a.y+b.y)/2);mapState.x+=pinch.anchor.x-now.x;mapState.y+=pinch.anchor.y-now.y;mapClamp();renderMapView();return;}
         if(!drag||drag.id!==e.pointerId)return;
         const dx=e.clientX-drag.x,dy=e.clientY-drag.y;
         if(Math.hypot(dx,dy)>4)drag.moved=true;
-        if(drag.moved){const scale=mapFrame().w/Math.max(1,svg.getBoundingClientRect().width);mapState.x=drag.cx-dx*scale;mapState.y=drag.cy-dy*scale;mapClamp();renderMapView();}
+        if(drag.moved){const f=mapFrame(),r=svg.getBoundingClientRect(),scale=1/Math.max(.001,Math.min(r.width/f.w,r.height/f.h));mapState.x=drag.cx-dx*scale;mapState.y=drag.cy-dy*scale;mapClamp();renderMapView();}
     });
     function endDrag(e) {
         const old=drag; touchPoints.delete(e.pointerId);
         if(old&&old.id===e.pointerId){drag=null;if(e.type==="pointerup"&&!old.moved&&old.point)mapSelect(Number(old.point.dataset.point));}
-        if(touchPoints.size<2)pinch=null;
+        if(touchPoints.size<2){pinch=null;if(touchPoints.size===1){const [id,a]=[...touchPoints.entries()][0];drag={id,x:a.x,y:a.y,cx:mapState.x,cy:mapState.y,point:null,moved:true};}}
     }
     svg.addEventListener("pointerup",endDrag);svg.addEventListener("pointercancel",endDrag);svg.addEventListener("lostpointercapture",endDrag);
     svg.addEventListener("wheel",e=>{e.preventDefault();mapZoom(e.deltaY<0?1.2:1/1.2);},{passive:false});
@@ -1372,8 +1355,9 @@ function openTennis(){
         <div class="tennis-stats"></div>
         <div class="tennis-help">◀ ▶ — рух (можна тримати). ● — старт / пауза.<br>Миша або палець — тягни свою ракетку. Перший до 5 очок.</div>
     </div>`;
-    const name=characterSettings.names[activeCharacter().id];
-    if(name)page.querySelector(".tennis-opponent").textContent=name;
+    const name=characterSettings.names[activeCharacter().id] || activeCharacter().species;
+    tennisChimp.src=activeCharacter().image;
+    page.querySelector(".tennis-opponent").textContent=name;
     const c=page.querySelector(".tennis-court");
     function aim(e){
         if(!tennis||!["playing","between"].includes(tennis.phase))return;
@@ -1381,7 +1365,9 @@ function openTennis(){
         if(r.width>0)tennis.player=tennisPaddleX((e.clientX-r.left)*TENNIS.w/r.width,TENNIS.playerWidth);
     }
     c.addEventListener("pointerdown",e=>{
-        if(!tennis||!["playing","between"].includes(tennis.phase)||e.button>0)return;
+        if(!tennis||e.button>0)return;
+        if(["ready","over","paused"].includes(tennis.phase))tennisConfirm();
+        if(!["playing","between"].includes(tennis.phase))return;
         tennisPointer=e.pointerId;c.setPointerCapture(e.pointerId);aim(e);
     });
     c.addEventListener("pointermove",e=>{if(tennisPointer===e.pointerId)aim(e);});
@@ -1952,7 +1938,7 @@ function deviceRefreshSettings(){
 }
 function openDeviceSettings(){
     page.innerHTML=`<div class="settings-panel">
-        <div class="menu-header settings-title">Налаштування <span>1.0</span></div>
+        <div class="menu-header settings-title">Налаштування <span>2.0</span></div>
         <div class="setting-row" data-setting="theme">
             <label for="setting-theme">Колір дисплея</label>
             <select id="setting-theme" class="setting-theme"></select>
@@ -1976,7 +1962,7 @@ function openDeviceSettings(){
         <div class="setting-row" data-setting="test"><button type="button" class="setting-test">Тест звуку</button></div>
         <div class="setting-row" data-setting="reset"><button type="button" class="setting-reset">Стандартні параметри</button></div>
         <div class="setting-message" role="status"></div>
-        <div class="setting-about">PocketDevice 1.0 · збірка 51<br>Працює офлайн.<br><span class="pwa-status">Перевіряю офлайн-кеш…</span><br>▲ ▼ — вибір. ◀ ▶ — змінити. ● — дія.</div>
+        <div class="setting-about">PocketDevice 2.0<br>Працює офлайн.<br><span class="pwa-status">Перевіряю офлайн-кеш…</span><br>▲ ▼ — вибір. ◀ ▶ — змінити. ● — дія.</div>
     </div>`;
     const root=page.querySelector(".settings-panel");
     const select=root.querySelector(".setting-theme");
@@ -2264,7 +2250,7 @@ function moveSelection(direction) {
     if (currentPage === "settings") { moveDeviceSettings(direction); return; }
     if (currentPage === "calculator") { moveCalculator(direction); return; }
     if (currentPage === "timer") { moveClock(direction); return; }
-    if (currentPage === "games") { moveTennis(direction); return; }
+    if (currentPage === "games") { v2GameMove(direction); return; }
     if (currentPage === "map") { moveMap(direction); return; }
     if (currentPage === "library") { moveLibrary(direction); return; }
     if (currentPage === "notes") { navigateNotes(direction); return; }
@@ -2287,7 +2273,7 @@ function openPage() {
     if (currentPage === "settings") { confirmDeviceSettings(); return; }
     if (currentPage === "calculator") { confirmCalculator(); return; }
     if (currentPage === "timer") { clockConfirm(); return; }
-    if (currentPage === "games") { tennisConfirm(); return; }
+    if (currentPage === "games") { v2GameConfirm(); return; }
     if (currentPage === "map") { confirmMap(); return; }
     if (currentPage === "library") { confirmLibrary(); return; }
     if (currentPage === "notes") { confirmNotes(); return; }
@@ -2322,11 +2308,12 @@ function openPage() {
     if (currentPage === "notes") showNotesList(true);
     if (currentPage === "library") openLibrary();
     if (currentPage === "map") openMap();
-    if (currentPage === "games") openTennis();
+    if (currentPage === "games") v2GamesHub();
     if (currentPage === "timer") openClock();
     if (currentPage === "calculator") openCalculator();
     if (currentPage === "settings") openDeviceSettings();
 
+    if (currentPage === "companion" && activeCharacter().id !== "chimp") { v2Companion(); screen.scrollTop=0; return; }
     if (currentPage === "companion") {
     page.innerHTML = `
         <div class="menu-header">Кореш</div>
@@ -2380,13 +2367,14 @@ startCompanionSitting();
 startCompanionSleeping();
 startCompanionActions();
 greetCompanion();
+    v2DecorateRoom();
 }
 }
 
 function goBack() {
     if (clockAlarm) { clockDismissAlarm(); return; }
     if (currentPage === "menu") return;
-    if (currentPage === "games") closeTennis();
+    if (currentPage === "games" && v2GameBack()) return;
     if (currentPage === "map" && backFromMap()) return;
     if (currentPage === "notes" && backFromNotes()) return;
     if (currentPage === "library" && libraryBack()) return;

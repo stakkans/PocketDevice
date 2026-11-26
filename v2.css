@@ -1,0 +1,47 @@
+/* PocketDevice 2.0 — static shell / independent OLED scrolling */
+html,body{overflow:hidden;overscroll-behavior:none}
+body.pd-mobile{position:fixed;inset:0;box-sizing:border-box;width:100%;margin:0}
+.pd-mobile .device{position:relative;flex:0 0 auto}
+.display{flex:1 1 0;min-height:0;overflow:hidden;position:relative}
+.screen-content{min-height:0;max-height:100%;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;justify-content:flex-start;align-items:stretch}
+.controls,.shell-brand,.shell-footer{flex-shrink:0;touch-action:none}
+.map-svg,.tennis-court,.v2-board,.companion-sprite,.companion-item{touch-action:none}
+.device{background:var(--v2-shell,#355648);border-color:color-mix(in srgb,var(--v2-shell),#c3d4ce 35%);box-shadow:0 20px 50px #000a,inset 0 0 0 2px #131c19,inset 1px 1px 4px #fffff340,inset 0 0 14px color-mix(in srgb,var(--v2-light) calc(var(--v2-glow)*70%),transparent),0 0 15px color-mix(in srgb,var(--v2-light) calc(var(--v2-glow)*65%),transparent)}
+.shell-pcb{opacity:var(--v2-plastic,.9)}
+.shell-glass{background:linear-gradient(132deg,#c3d4ce32,transparent 48%,#09171355),linear-gradient(90deg,#d0e2dd21,transparent 6%,transparent 95%,#0006),repeating-linear-gradient(0deg,#e4f2e508 0 1px,transparent 1px 4px)}
+.controls button{box-shadow:0 3px 3px #0009,inset 0 0 7px color-mix(in srgb,var(--v2-light) calc(var(--v2-glow)*65%),transparent)}
+.dpad button span{display:block;width:0;height:0;font-size:0;border:6px solid transparent;filter:drop-shadow(0 0 2px #d5fff1)}
+#up span{border-bottom-color:#c8ddd6;transform:translateY(-3px)}
+#down span{border-top-color:#c8ddd6;transform:translateY(3px)}
+#left span{border-right-color:#c8ddd6;transform:translateX(-3px)}
+#right span{border-left-color:#c8ddd6;transform:translateX(3px)}
+.v2-shell-settings{display:grid;gap:10px;border:1px solid #65e8d650;padding:8px;font-size:12px}
+.v2-shell-settings h3{margin:0;color:#b1fbea;font-size:13px}.v2-shell-settings label{display:grid;gap:5px}
+.v2-shell-settings input[type=range]{width:100%;accent-color:#65e8d6}.v2-shell-settings input[type=color]{width:100%;height:32px;border:1px solid #65e8d650;background:#081a15}.v2-shell-settings select{background:#081a15;color:#65e8d6;border:1px solid #65e8d650;padding:6px}.v2-shell-settings input[type=checkbox]{accent-color:#65e8d6}
+.v2-room-deco{position:absolute;inset:0;pointer-events:none;opacity:.42;overflow:hidden;background:linear-gradient(0deg,#112e28 0 17px,transparent 17px)}
+.v2-room-deco i{position:absolute;display:block;border:2px solid #38756b}.v2-window{top:10%;left:9%;width:26%;height:29%;background:linear-gradient(90deg,transparent 48%,#38756b 48% 52%,transparent 52%),linear-gradient(0deg,transparent 48%,#38756b 48% 52%,transparent 52%),#0b2520}
+.v2-shelf{top:20%;right:8%;width:35%;height:20%;background:repeating-linear-gradient(90deg,#317264 0 8%,#122d27 8% 12%);border-bottom-width:6px!important}
+.v2-chair{bottom:20px;left:7%;height:31%;width:23%;background:#173e34;border-bottom-width:6px!important;box-shadow:inset 0 -12px #3a7769}
+.v2-plant{bottom:20px;right:9%;height:14%;width:12%;background:#285749}.v2-plant:before{content:"";position:absolute;bottom:100%;left:-30%;width:160%;height:37px;background:#397c67;clip-path:polygon(50% 100%,10% 45%,0 15%,35% 28%,50% 0,65% 28%,100% 15%,90% 45%)}
+.v2-rug{bottom:7px;left:30%;height:9px;width:40%;background:repeating-linear-gradient(90deg,#2c6254 0 5px,#174033 5px 10px)}
+.v2-sprite{z-index:2;transition:left .4s steps(8);width:clamp(90px,36%,124px);height:clamp(110px,58%,150px);left:36%;object-fit:contain}
+.v2-sprite[data-act=grab]{transition:none;animation:none;transform:rotate(-5deg)}.v2-sprite[data-act=pet]{animation:v2Nod .3s steps(3) infinite}
+.v2-sprite[data-act=coffee],.v2-sprite[data-act=glasses],.v2-sprite[data-act=snakes],.v2-sprite[data-act=book]{animation:v2Nod .6s steps(4) infinite}
+.v2-sprite[data-act=laugh],.v2-sprite[data-act=hiss],.v2-sprite[data-act=tail],.v2-sprite[data-act=finger]{animation:v2Shake .22s steps(3) infinite}
+.v2-sprite[data-act=fire]{animation:v2Fire .4s steps(4) infinite}.v2-sprite[data-act=stone]{filter:grayscale(1) brightness(1.5);animation:none}.v2-sprite[data-act=meditate]{animation:v2Float 1s steps(5) infinite}.v2-sprite[data-act=mirror]{animation:v2Nod .7s steps(3) infinite}
+@keyframes v2Nod{50%{transform:rotate(5deg) scaleY(.96)}}@keyframes v2Shake{50%{transform:translateX(4px) rotate(-3deg)}}@keyframes v2Fire{50%{filter:brightness(2) drop-shadow(0 0 8px #65e8d6)}}@keyframes v2Float{50%{transform:translateY(-9px)}}
+.v2-prop{position:absolute;bottom:30%;right:15%;z-index:3;font-size:28px;color:#a7fbe5;text-shadow:0 0 8px #65e8d6;animation:v2Float .65s steps(4) infinite;pointer-events:none}
+.v2-actions{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:7px;flex-shrink:0}.v2-actions button{min-height:30px;padding:5px}
+.v2-wander{position:absolute;bottom:1px;left:0;z-index:8;width:35px;height:42px;pointer-events:none;opacity:.68;animation:v2Walk 6.5s linear forwards}.v2-wander img{width:100%;height:100%;object-fit:contain;animation:v2Nod .45s steps(3) infinite;image-rendering:pixelated}@keyframes v2Walk{from{left:-40px}to{left:100%}}
+.v2-game-list{display:grid;gap:8px}.v2-game-card{display:grid;text-align:left;gap:5px;min-height:54px}.v2-game-card small,.v2-hint{font-size:11px;color:#8ab8af;line-height:1.5}.v2-score{font-size:12px;margin:8px 0}.v2-board{display:block;max-width:100%;max-height:240px;width:auto;height:auto;margin:0 auto;border:1px solid #65e8d650;image-rendering:pixelated}.v2-game-controls{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:7px 0}.v2-game-controls button,.v2-xo button{background:#071b15;color:#65e8d6;border:1px solid #65e8d650;font:inherit;min-height:34px;touch-action:manipulation}.v2-game-toggle{width:100%;margin-bottom:6px}.v2-xo{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;max-width:270px;margin:10px auto}.v2-xo button{aspect-ratio:1;font-size:30px}.v2-xo-restart{width:100%}
+@media(prefers-reduced-motion:reduce){.v2-wander{display:none}.v2-sprite,.v2-prop{animation:none!important}}
+/* Fallback for older Safari: computed color is set by JS. */
+.device{box-shadow:0 20px 50px #000a,inset 0 0 0 2px #131c19,inset 1px 1px 4px #fffff340,inset 0 0 17px var(--v2-glow-color,transparent),0 0 15px var(--v2-glow-color,transparent)}
+.controls button{filter:drop-shadow(0 0 3px var(--v2-glow-color,transparent))}
+.v2-wander{filter:var(--pd-display-filter,none)}
+/* No interrupted page scroll when iOS focus moves. */
+.pd-mobile .screen-content{overflow-anchor:none}
+#pcb-substrate stop:first-child{stop-color:var(--v2-shell,#355648)}
+#pcb-substrate stop:nth-child(2){stop-color:var(--v2-shell,#355648);stop-opacity:.78}
+#pcb-substrate stop:last-child{stop-color:var(--v2-shell,#355648);stop-opacity:.38}
+.v2-wander-small{width:26px;height:32px;opacity:.5}
