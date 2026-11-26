@@ -1,5 +1,5 @@
-// PocketDevice 2.0.1, build 01 — static offline app. Bump CACHE_VERSION for every release.
-const CACHE_VERSION = "2.0.1-build01";
+// PocketDevice 2.0.2, build 01 — static offline app. Bump CACHE_VERSION for every release.
+const CACHE_VERSION = "2.0.2-build01";
 const PREFIX = "pocketdevice-" + self.registration.scope + "-";
 const CACHE_NAME = PREFIX + CACHE_VERSION;
 const CORE = [
@@ -17,6 +17,7 @@ const fileURL = name => new URL(name,self.registration.scope).href;
 const knownURLs = new Set(allFiles.map(fileURL));
 const rootURL = fileURL("./");
 const indexURL = fileURL("index.html");
+let lastUpdateCheck=0;
 async function cacheMissingSprites(cache) {
     await Promise.all(SPRITES.map(async name=>{
         const url=fileURL(name);
@@ -48,6 +49,8 @@ self.addEventListener("activate",event=>{
         const names=await caches.keys();
         await Promise.all(names.filter(name=>name.startsWith(PREFIX)&&name!==CACHE_NAME).map(name=>caches.delete(name)));
         await self.clients.claim();
+        const status=await getStatus();
+        for(const client of await self.clients.matchAll({type:"window",includeUncontrolled:false}))client.postMessage(status);
     })());
 });
 self.addEventListener("fetch",event=>{
@@ -56,6 +59,7 @@ self.addEventListener("fetch",event=>{
     const url=new URL(req.url);
     if(url.origin!==self.location.origin)return;
     if(req.mode==="navigate"&&(url.href===rootURL||url.href===indexURL||url.pathname===new URL(rootURL).pathname||url.pathname===new URL(indexURL).pathname)){
+        if(Date.now()-lastUpdateCheck>30000){lastUpdateCheck=Date.now();event.waitUntil(self.registration.update().catch(()=>{}));}
         event.respondWith((async()=>{
             const cache=await caches.open(CACHE_NAME);
             const saved=await cache.match(indexURL);

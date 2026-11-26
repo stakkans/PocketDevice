@@ -1938,7 +1938,7 @@ function deviceRefreshSettings(){
 }
 function openDeviceSettings(){
     page.innerHTML=`<div class="settings-panel">
-        <div class="menu-header settings-title">Налаштування <span>2.0.1</span></div>
+        <div class="menu-header settings-title">Налаштування <span>2.0.2</span></div>
         <div class="setting-row" data-setting="theme">
             <label for="setting-theme">Колір дисплея</label>
             <select id="setting-theme" class="setting-theme"></select>
@@ -1962,7 +1962,7 @@ function openDeviceSettings(){
         <div class="setting-row" data-setting="test"><button type="button" class="setting-test">Тест звуку</button></div>
         <div class="setting-row" data-setting="reset"><button type="button" class="setting-reset">Стандартні параметри</button></div>
         <div class="setting-message" role="status"></div>
-        <div class="setting-about">PocketDevice 2.0.1<br>Працює офлайн.<br><span class="pwa-status">Перевіряю офлайн-кеш…</span><br>▲ ▼ — вибір. ◀ ▶ — змінити. ● — дія.</div>
+        <div class="setting-about">PocketDevice 2.0.2<br>Працює офлайн.<br><span class="pwa-status">Перевіряю офлайн-кеш…</span><br><button type="button" class="note-btn pwa-update">Перевірити оновлення</button><br>▲ ▼ — вибір. ◀ ▶ — змінити. ● — дія.</div>
     </div>`;
     const root=page.querySelector(".settings-panel");
     const select=root.querySelector(".setting-theme");
