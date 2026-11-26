@@ -1,16 +1,17 @@
-// PocketDevice 2.0.2, build 01 — static offline app. Bump CACHE_VERSION for every release.
-const CACHE_VERSION = "2.0.2-build01";
+// PocketDevice 2.1, build 01 — static offline app. Bump CACHE_VERSION for every release.
+const CACHE_VERSION = "2.1-build01";
 const PREFIX = "pocketdevice-" + self.registration.scope + "-";
 const CACHE_NAME = PREFIX + CACHE_VERSION;
 const CORE = [
     "index.html","style.css","script.js","map-data.js","pwa.js","manifest.webmanifest",
-    "icon-192.png","icon-512.png","apple-touch-icon.png","v2.css","v2.js","v2-library.js","goat.png","devil.png","medusa.png","goat-book.png","goat-coffee.png","goat-glasses.png","goat-meditate.png","devil-fire.png","devil-finger.png","devil-tail.png","devil-laugh.png","medusa-snakes.png","medusa-stone.png","medusa-hiss.png","medusa-mirror.png"
+    "icon-192.png","icon-512.png","apple-touch-icon.png","v2.css","v2.js","v2-library.js","v21.js","v21.css","goat.png","devil.png","medusa.png","goat-book.png","goat-coffee.png","goat-glasses.png","goat-meditate.png","devil-fire.png","devil-finger.png","devil-tail.png","devil-laugh.png","medusa-snakes.png","medusa-stone.png","medusa-hiss.png","medusa-mirror.png"
 ];
 const SPRITES = [
     "chimp.png","chimp-blink.png","chimp-grab.png","chimp-pet.png","chimp-beer-hold.png",
     "chimp-beer-drink.png","chimp-smoke.png","chimp-smoke-exhale.png","chimp-walk-1.png",
     "chimp-walk-2.png","chimp-sit.png","chimp-sleep.png","chimp-yawn.png","chimp-scratch-butt.png",
-    "chimp-scratch-groin.png","chimp-laugh.png","chimp-middle-finger.png","chimp-cap.png","chimp-pee.png"
+    "chimp-scratch-groin.png","chimp-laugh.png","chimp-middle-finger.png","chimp-cap.png","chimp-pee.png",
+    "chimp-burp.png","chimp-tv.png","chimp-chips.png","chimp-can.png","chimp-sofa.png","goat-write.png","goat-chess.png","goat-clean.png","goat-beard.png","goat-sleep.png","devil-guitar.png","devil-dance.png","devil-angry.png","devil-fly.png","devil-vase.png","medusa-feed.png","medusa-brush.png","medusa-pose.png","medusa-statue.png","medusa-throne.png"
 ];
 const allFiles = [...CORE,...SPRITES];
 const fileURL = name => new URL(name,self.registration.scope).href;

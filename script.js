@@ -1223,6 +1223,7 @@ function tennisPoint(s,playerWon) {
         s.phase="over"; s.phrase=tPhrase(s.you===5?"won":"lost");
         if(!s.saved){
             s.saved=true; if(s.you===5)tennisStats.wins++;else tennisStats.losses++;
+            if(typeof v21TennisResult==="function")v21TennisResult(s.you===5);
             try {localStorage.setItem(tennisKey,JSON.stringify(tennisStats));} catch {}
         }
     } else {
@@ -1938,7 +1939,7 @@ function deviceRefreshSettings(){
 }
 function openDeviceSettings(){
     page.innerHTML=`<div class="settings-panel">
-        <div class="menu-header settings-title">Налаштування <span>2.0.2</span></div>
+        <div class="menu-header settings-title">Налаштування <span>2.1</span></div>
         <div class="setting-row" data-setting="theme">
             <label for="setting-theme">Колір дисплея</label>
             <select id="setting-theme" class="setting-theme"></select>
@@ -1962,7 +1963,7 @@ function openDeviceSettings(){
         <div class="setting-row" data-setting="test"><button type="button" class="setting-test">Тест звуку</button></div>
         <div class="setting-row" data-setting="reset"><button type="button" class="setting-reset">Стандартні параметри</button></div>
         <div class="setting-message" role="status"></div>
-        <div class="setting-about">PocketDevice 2.0.2<br>Працює офлайн.<br><span class="pwa-status">Перевіряю офлайн-кеш…</span><br><button type="button" class="note-btn pwa-update">Перевірити оновлення</button><br>▲ ▼ — вибір. ◀ ▶ — змінити. ● — дія.</div>
+        <div class="setting-about">PocketDevice 2.1<br>Працює офлайн.<br><span class="pwa-status">Перевіряю офлайн-кеш…</span><br><button type="button" class="note-btn pwa-update">Перевірити оновлення</button><br>▲ ▼ — вибір. ◀ ▶ — змінити. ● — дія.</div>
     </div>`;
     const root=page.querySelector(".settings-panel");
     const select=root.querySelector(".setting-theme");
@@ -2247,6 +2248,7 @@ function updateSelection() {
 }
 
 function moveSelection(direction) {
+    if (currentPage === "companion") { v21Move(direction); return; }
     if (currentPage === "settings") { moveDeviceSettings(direction); return; }
     if (currentPage === "calculator") { moveCalculator(direction); return; }
     if (currentPage === "timer") { moveClock(direction); return; }
@@ -2270,6 +2272,7 @@ function moveSelection(direction) {
 
 function openPage() {
     if (clockAlarm) { clockDismissAlarm(); return; }
+    if (currentPage === "companion") { v21Confirm(); return; }
     if (currentPage === "settings") { confirmDeviceSettings(); return; }
     if (currentPage === "calculator") { confirmCalculator(); return; }
     if (currentPage === "timer") { clockConfirm(); return; }
@@ -2313,62 +2316,8 @@ function openPage() {
     if (currentPage === "calculator") openCalculator();
     if (currentPage === "settings") openDeviceSettings();
 
-    if (currentPage === "companion" && activeCharacter().id !== "chimp") { v2Companion(); screen.scrollTop=0; return; }
-    if (currentPage === "companion") {
-    page.innerHTML = `
-        <div class="menu-header">Кореш</div>
-
-        <div class="companion-room">
-            <div class="companion-floor"></div>
-
-<img src="chimp.png"
-     class="companion-sprite"
-     alt="Шимпанзе"
-     draggable="false">
-        </div>
-
-        <div class="companion-dialogue">
-            Ну шо, здоров!
-        </div>
-        <div class="companion-items">
-
-    <button class="companion-item" data-item="beer">
-        <svg viewBox="0 0 16 16">
-            <path d="M4 1H12V3H13V13H12V15H4V13H3V3H4Z
-                     M4 4H12M4 12H12M6 2H10"/>
-        </svg>
-        <span>Пиво</span>
-    </button>
-
-    <button class="companion-item" data-item="cigarette">
-        <svg viewBox="0 0 16 16">
-            <path d="M1 10H15V13H1Z
-                     M5 10V13M12 10V13
-                     M13 7L11 5L13 2"/>
-        </svg>
-        <span>Сіга</span>
-    </button>
-
-</div>
-    `;
-}
-    if (currentPage === "companion") {
-        const name = characterSettings.names[activeCharacter().id];
-        if (name) page.querySelector(".menu-header").textContent = "Кореш: " + name;
-    }
+    if (currentPage === "companion") { v21Companion(); return; }
     screen.scrollTop = 0;
-    if (currentPage === "companion") {
-    startBlinking();
-    enableCompanionDrag();
-    enableCompanionItems();
-startCompanionLife();
-startCompanionWalking();
-startCompanionSitting();
-startCompanionSleeping();
-startCompanionActions();
-greetCompanion();
-    v2DecorateRoom();
-}
 }
 
 function goBack() {

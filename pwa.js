@@ -1,6 +1,6 @@
-// PocketDevice 2.0.2 — check app updates on launch and return, without losing local data.
+// PocketDevice 2.1 — check app updates on launch and return, without losing local data.
 (function(){
-    const BUILD="2.0.2-build01";
+    const BUILD="2.1-build01";
     let status="Перевіряю офлайн-кеш…",registration=null,checking=null,lastCheck=0,remoteBuild="",ready=false,manual=false,reloading=false;
     const supported=window.isSecureContext&&"serviceWorker" in navigator;
     const buttonText=()=>remoteBuild&&remoteBuild!==BUILD&&ready?"Встановити оновлення":checking?"Перевіряю…":"Перевірити оновлення";

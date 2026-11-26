@@ -1,0 +1,44 @@
+/* PD 2.1 — rooms and interaction controls. */
+.device-page:has(.v21-room){height:100%;min-height:0;gap:5px}
+.v21-title{margin:0 0 3px!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px}
+.companion-room.v21-room{min-height:145px;flex:1 1 0;height:auto;isolation:isolate;background:linear-gradient(180deg,#102621,#071815 77%,#102820 77%);border-color:#508e7966;touch-action:none}
+.v21-room[data-room=chimp]{background:repeating-linear-gradient(90deg,#1d3d3422 0 1px,transparent 1px 32px),linear-gradient(180deg,#0d2420,#081612 77%,#17362b 77%)}
+.v21-room[data-room=goat]{background:repeating-linear-gradient(0deg,#4d8a6333 0 1px,transparent 1px 24px),linear-gradient(180deg,#172a1e,#0a1915 77%,#27392b 77%)}
+.v21-room[data-room=devil]{background:repeating-linear-gradient(135deg,#488b6e12 0 1px,transparent 1px 18px),linear-gradient(180deg,#242b22,#111b16 77%,#1f342a 77%)}
+.v21-room[data-room=medusa]{background:repeating-linear-gradient(90deg,#91c3ae19 0 1px,transparent 1px 42px),repeating-linear-gradient(0deg,#91c3ae19 0 1px,transparent 1px 22px),linear-gradient(180deg,#203b33,#101e1b 77%,#2b4940 77%)}
+.v21-floor{position:absolute;inset:auto 0 0;height:17px;border-top:1px solid #78c2ae65;background:repeating-linear-gradient(90deg,#2f615344 0 1px,transparent 1px 22px);pointer-events:none;z-index:1}
+.v21-furniture{position:absolute;z-index:2;padding:0!important;background:transparent!important;border:1px solid transparent!important;box-shadow:none!important;touch-action:none;cursor:pointer;opacity:.72;transition:opacity .15s;min-width:0;min-height:0}
+.v21-furniture svg{width:100%;height:100%;display:block;overflow:visible}
+.v21-furniture:active,.v21-furniture:focus-visible{opacity:1;outline:1px dashed currentColor}
+.v21-edit .v21-furniture{z-index:5;outline:1px dashed #8edccc;opacity:1;cursor:grab}
+.v21-room .v21-furniture.v21-on{filter:brightness(1.65) drop-shadow(0 0 4px #61e1bd);opacity:1}
+.v21-room.v21-dark .v21-furniture:not([data-furniture=lamp]){opacity:.25}
+.v21-room.v21-dark{background:#050e0d}
+.v21-room .v21-character{z-index:3;bottom:17px;width:clamp(80px,36%,145px);height:min(85%,155px);left:32%;object-fit:contain;object-position:center bottom;transition:left .5s steps(6)}
+.v21-room .v21-character.dragging{transition:none;z-index:7}
+.v21-room .v21-character[data-act]{animation:v21-bob .5s steps(3) infinite}
+.v21-room .v21-character[data-act=sleep],.v21-room .v21-character[data-act=sofa],.v21-room .v21-character[data-act=throne]{animation:companion-breathe 2.4s steps(4) infinite}
+.v21-room .v21-character[data-act=fly]{animation:v21-fly 1.2s steps(8) infinite}
+.v21-room .v21-character[data-act=dance],.v21-room .v21-character[data-act=guitar]{animation:v21-dance .6s steps(6) infinite}
+.v21-room .v21-character[data-act=angry],.v21-room .v21-character.v21-shake{animation:v21-shake .25s steps(4) infinite}
+@keyframes v21-bob{50%{transform:translateY(-2px)}}
+@keyframes v21-fly{50%{transform:translateY(-18px)}}
+@keyframes v21-dance{25%{transform:rotate(-5deg) translateY(-3px)}75%{transform:rotate(5deg) translateY(-4px)}}
+@keyframes v21-shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.v21-visitor{position:absolute;right:3%;bottom:17px;width:27%;height:70%;object-fit:contain;object-position:bottom;image-rendering:pixelated;pointer-events:none;z-index:4;animation:v21-visit 6s steps(12) both}
+@keyframes v21-visit{0%{right:-28%}16%,85%{right:3%}100%{right:-28%}}
+.v21-gift-prop{position:absolute;z-index:5;bottom:18px;left:63%;width:30px;height:30px;pointer-events:none;animation:v21-bob .5s steps(3) infinite}
+.v21-gift-prop svg,.v21-drag-gift svg{width:100%;height:100%}.v21-petrify{filter:grayscale(1)}
+.v21-drag-gift{position:fixed;width:38px;height:38px;transform:translate(-50%,-50%);pointer-events:none;z-index:9999}
+.companion-dialogue.v21-dialogue{margin:0;height:48px;padding:5px 8px;line-height:1.35;font-size:12px;overflow:auto}
+.v21-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;flex:0 0 auto}
+.v21-tabs button,.v21-action-button{font:inherit;color:inherit;background:#10221c;border:1px solid #64bfa86b;padding:5px 2px;min-width:0;overflow-wrap:anywhere;cursor:pointer;text-align:center}
+.v21-tabs button{font-size:11px;min-height:30px}.v21-tabs .v21-active,.v21-focus{border-color:#a6ead7!important;background:#31635455!important;outline:1px solid currentColor!important}
+.v21-panel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;flex:0 0 auto;max-height:100px;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#4f8c7c transparent;padding:2px}
+.v21-panel .v21-action-button{min-height:32px;display:flex;align-items:center;justify-content:center;gap:3px;font-size:11px;line-height:1.15;white-space:normal;touch-action:pan-y}
+.v21-panel .v21-action-button:has(svg){touch-action:none}.v21-action-button svg{width:20px;height:20px;flex:0 0 20px}
+.v21-memory{grid-column:1/-1;white-space:pre-line;font-size:11px;line-height:1.5;margin:0;padding:4px}
+.v21-help{font-size:10px;opacity:.65;display:block;flex-shrink:0;line-height:1.2}
+.v21-roam-line{position:absolute;bottom:100%;left:-18px;white-space:nowrap;background:#071612e8;border:1px solid #60b6a3;padding:3px;font:10px monospace;color:#9debd3}
+@media(max-height:500px){.v21-room{min-height:128px!important}.v21-panel{max-height:75px}.v21-help{display:none}}
+@media(prefers-reduced-motion:reduce){.v21-room .v21-character,.v21-visitor,.v21-gift-prop{animation:none!important;transition:none!important}}
